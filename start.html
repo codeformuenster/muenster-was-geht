@@ -103,7 +103,7 @@
             </div>
             <div class="col text-justify">
                 <center>
-                <i class=" button-dislike fa fa-times"></i>
+                <i class="js-center-trigger button-dislike fa fa-times"></i>
             </center>
             </div>
             <div class="col">
@@ -122,11 +122,6 @@
     -->
 
     <script>
-
-
-
-        var originalCard = $( ".mwg-card" ).clone();
-        var cardNr = 0;
         function getRandomInt(max) {
             return Math.floor(Math.random() * Math.floor(max));
         }
@@ -136,8 +131,30 @@
             $('<img/>')[0].src = path
             return path;
         }
+        function showNextCard() {
+            originalCard.clone().appendTo( "#mwg-insert" );
+            $("#mwg-insert .card").hide();
+            $("#mwg-insert .card-title").html("Event Kätzchen #" + (++cardNr));
+
+            $("#mwg-insert .card-img").attr("src", nextImage)
+            $("#mwg-insert .card").fadeIn();
+            registerSwipeEvent();
+            nextImage = getNextImage();
+        }
+
+
+        var originalCard = $( ".mwg-card" ).clone();
+        var cardNr = 0;
+
+        // load likes form localstorage
+        var likes = [];
+        if (localStorage.getItem("likes")) {
+            likes = JSON.parse(localStorage.getItem("likes"));
+        }
+
+        // cats load very slow, so we do image preloading
         var nextImage = getNextImage();
-        //Globals
+
         var $topCard,
             //deltaThreshold is the swipe distance from the initial place of the card
             deltaThreshold = 100,
@@ -148,15 +165,23 @@
                     transform;
             //If the event has a type, then it is triggered from a button and has a given direction
             if (event.type === 'click') {
-            directionFactor = direction === 'right' ? -1 : 1;
+                directionFactor = direction === 'right' ? -1 : 1;
             }
             //If the event has a deltaX, then it is triggered from a gesture and has a calculated direction
             else if (event.deltaX) {
-            directionFactor = event.deltaX >= 0 ? -1 : 1;
+                directionFactor = event.deltaX >= 0 ? -1 : 1;
             }
 
             //If the threshold is reached or a trigger clicked, the card is thrown on a side and then disappear
             if ( event.deltaX && deltaX > deltaThreshold || event.deltaX && deltaX < -1 * deltaThreshold || direction) {
+
+                if (directionFactor<0) {
+                    // we got a like
+                    likes.push($("#mwg-insert .card-title").html());
+                    console.log("likes", likes)
+                    localStorage.setItem("likes", JSON.stringify(likes));
+                }
+
                 transform = 'translate(' + directionFactor * -100 + 'vw, 0) rotate(' + directionFactor * -5 + 'deg)';
                 $card
                 .delay(100)
@@ -166,17 +191,9 @@
                 .delay(300)
                 .queue(function () {
                     $(this).addClass('done').remove();
-                    originalCard.clone().appendTo( "#mwg-insert" );
-                    $("#mwg-insert .card").hide();
-                    $("#mwg-insert .card-title").html("Event Kätzchen #" + (++cardNr));
-
-                    $("#mwg-insert .card-img").attr("src", nextImage)
-                    $("#mwg-insert .card").fadeIn();
-                    registerSwipeEvent();
-                    nextImage = getNextImage();
+                    showNextCard();
                 });
 
-                //Do something
                 console.log('Swipe done. \nCard:', $card, '\nDirection:', directionFactor);
 
             }
@@ -239,6 +256,12 @@
             var $topCard = $('.js-swiping-card').last();
             swipeEnded(event, 'right', $topCard);
         });
+        $('.js-center-trigger').click(function() {
+            $( "#mwg-insert .card" ).slideUp(function() {
+                $(this).addClass('done').remove();
+                showNextCard();
+            });
+        })
 
 
     </script>
