@@ -11,6 +11,30 @@
     <link href="css/fontawesome-all.min.css" rel="stylesheet">
     <link href="css/style-was-geht.css" rel="stylesheet">
 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js"></script>
+
+
+
+<style>
+
+.card:hover .card-illustration, .card:focus .card-illustration {
+  transform: scale(1.1);
+}
+
+.js-swiping-card {
+  transition: transform 0.5s;
+}
+.js-swiping-card.done {
+  display: none;
+}
+/*
+@TODO :
+- add text animation on cards ?
+- add proper behaviour depending on media queries (faster on mobile than on desktop, different size, ...)
+*/
+
+</style>
     <title>Benutzerprofil - Münster was geht</title>
 
     <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
@@ -49,33 +73,33 @@
                 <a href="favorites.html" class=" float-right top-col-icon"><i class="fa fa-list-alt"></i></a>
             </div>
         </div>
+        <div id="mwg-insert">
+            <div class="mwg-card card wasgeht js-swiping-card">
 
-        <div class="card wasgeht">
+                <img class="card-img" src="images/party.jpg"/>
+                <div class="card-img-overlay">
+                    <a class="badge badge-danger text-white"><i class="fa fa-exclamation-triangle"></i> Hohe Besucherzahl</a>
+                    <div class="white-circle float-right"><i class="fa fa-info"></i></div>
+                </div>
 
-            <img class="card-img" src="images/party.jpg"/>
-            <div class="card-img-overlay">
-                <a class="badge badge-danger text-white"><i class="fa fa-exclamation-triangle"></i> Hohe Besucherzahl</a>
-                <div class="white-circle float-right"><i class="fa fa-info"></i></div>
-            </div>
-
-            <div class="card-body">
-                <span class="badge badge-info text-white float-right">
-                    <i class="fa fa-map-marker-alt"></i>2 km
-                </span>
-                <h5 class="card-title">Event: Send</h5>
+                <div class="card-body">
+                    <span class="badge badge-info text-white float-right">
+                        <i class="fa fa-map-marker-alt"></i>2 km
+                    </span>
+                    <h5 class="card-title">Event: Send</h5>
 
 
-                <span class="badge color-blue text-white">Entertainment</span>
-                <span class="badge badge-success text-white">Findet statt bis 23:00</span>
+                    <span class="badge color-blue text-white">Entertainment</span>
+                    <span class="badge badge-success text-white">Findet statt bis 23:00</span>
 
-                <div>           Dreimal im Jahr ist Send - die größte Kirmes im Münsterland, die Jahr für Jahr etwa eine Million Besucher anzieht. Schaustellerbetriebe aus der ganzen Bundesrepublik kommen im Frühling, im Sommer und im Herbst nach Münster, um Nostalgisches und natürlich die neuesten Sensationen an Fahrgeschäften zu präsentieren.
+                    <div class="mwg-content">           Dreimal im Jahr ist Send - die größte Kirmes im Münsterland, die Jahr für Jahr etwa eine Million Besucher anzieht. Schaustellerbetriebe aus der ganzen Bundesrepublik kommen im Frühling, im Sommer und im Herbst nach Münster, um Nostalgisches und natürlich die neuesten Sensationen an Fahrgeschäften zu präsentieren.
+                    </div>
                 </div>
             </div>
         </div>
-
         <div class="row">
             <div class="col">
-                <i class="button-dislike fa fa-thumbs-down text-danger "></i>
+                <i class="js-left-trigger button-dislike fa fa-thumbs-down text-danger "></i>
             </div>
             <div class="col text-justify">
                 <center>
@@ -83,7 +107,7 @@
             </center>
             </div>
             <div class="col">
-                <i class="float-right button-dislike fa fa-heart text-success"></i>
+                <i class="js-right-trigger float-right button-dislike fa fa-heart text-success"></i>
             </div>
         </div>
 
@@ -91,9 +115,135 @@
     </div>
 
     <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
+    -->
+
+    <script>
+
+
+
+        var originalCard = $( ".mwg-card" ).clone();
+        var cardNr = 0;
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * Math.floor(max));
+        }
+        function getNextImage() {
+            var random = 200 + getRandomInt(100)
+            var path = "https://placekitten.com/300/" + random;
+            $('<img/>')[0].src = path
+            return path;
+        }
+        var nextImage = getNextImage();
+        //Globals
+        var $topCard,
+            //deltaThreshold is the swipe distance from the initial place of the card
+            deltaThreshold = 100,
+            deltaX = 0;
+
+        function swipeEnded(event, direction, $card) {
+            var  directionFactor,
+                    transform;
+            //If the event has a type, then it is triggered from a button and has a given direction
+            if (event.type === 'click') {
+            directionFactor = direction === 'right' ? -1 : 1;
+            }
+            //If the event has a deltaX, then it is triggered from a gesture and has a calculated direction
+            else if (event.deltaX) {
+            directionFactor = event.deltaX >= 0 ? -1 : 1;
+            }
+
+            //If the threshold is reached or a trigger clicked, the card is thrown on a side and then disappear
+            if ( event.deltaX && deltaX > deltaThreshold || event.deltaX && deltaX < -1 * deltaThreshold || direction) {
+                transform = 'translate(' + directionFactor * -100 + 'vw, 0) rotate(' + directionFactor * -5 + 'deg)';
+                $card
+                .delay(100)
+                .queue(function () {
+                    $(this).css('transform', transform).dequeue();
+                })
+                .delay(300)
+                .queue(function () {
+                    $(this).addClass('done').remove();
+                    originalCard.clone().appendTo( "#mwg-insert" );
+                    $("#mwg-insert .card").hide();
+                    $("#mwg-insert .card-title").html("Event Kätzchen #" + (++cardNr));
+
+                    $("#mwg-insert .card-img").attr("src", nextImage)
+                    $("#mwg-insert .card").fadeIn();
+                    registerSwipeEvent();
+                    nextImage = getNextImage();
+                });
+
+                //Do something
+                console.log('Swipe done. \nCard:', $card, '\nDirection:', directionFactor);
+
+            }
+            //If the threshold isn't reached, the card goes back to its initial place
+            else {
+                transform = 'translate(0, 0) rotate(0)';
+                $card.css({
+                    'transform': transform,
+                });
+            }
+        }
+
+        function swipeLeft(event, $card) {
+            var transform;
+            deltaX = event.deltaX;
+            transform = 'translate(' + deltaX * 0.8 + 'px, 0) rotate(5deg)';
+            //translate the card on swipe
+            $card.css({
+                'transform': transform,
+            });
+        }
+
+        function swipeRight(event, $card) {
+            var transform;
+            deltaX = event.deltaX;
+            transform = 'translate(' + deltaX * 0.8 + 'px, 0) rotate(-5deg)';
+            //translate the card on swipe
+            $card.css({
+                'transform': transform,
+            });
+        }
+
+        //Events
+        function registerSwipeEvent() {
+            $('.js-swiping-card').each(function(index, element) {
+                var $card = $(element),
+                    //Add hammer events on element
+                    hammertime = new Hammer(element);
+
+            //Mobile gesture
+                hammertime.on('panleft swipeleft', function(event) {
+                    swipeLeft(event, $card);
+                });
+                hammertime.on('panright swiperight', function(event) {
+                    swipeRight(event, $card);
+                });
+                hammertime.on('panend', function(event) {
+                    swipeEnded(event, false, $card);
+                });
+            });
+        }
+        registerSwipeEvent();
+
+        //Btn controls
+        $('.js-left-trigger').on('click', function(event) {
+            var $topCard= $('.js-swiping-card').last();
+            swipeEnded(event, 'left', $topCard);
+        });
+        $('.js-right-trigger').on('click', function(event) {
+            var $topCard = $('.js-swiping-card').last();
+            swipeEnded(event, 'right', $topCard);
+        });
+
+
+    </script>
+
+
+
+</body>
 </html>
