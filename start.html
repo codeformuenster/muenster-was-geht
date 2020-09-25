@@ -126,7 +126,7 @@
             return Math.floor(Math.random() * Math.floor(max));
         }
         function getNextImage() {
-            var random = 200 + getRandomInt(100)
+            var random = 200 + cardNr
             var path = "https://placekitten.com/300/" + random;
             $('<img/>')[0].src = path
             return path;
@@ -135,7 +135,7 @@
             originalCard.clone().appendTo( "#mwg-insert" );
             $("#mwg-insert .card").hide();
             $("#mwg-insert .card-title").html("Event Kätzchen #" + (++cardNr));
-
+            localStorage.setItem("cardNr", cardNr);
             $("#mwg-insert .card-img").attr("src", nextImage)
             $("#mwg-insert .card").fadeIn();
             registerSwipeEvent();
@@ -144,7 +144,15 @@
 
 
         var originalCard = $( ".mwg-card" ).clone();
+
+        // continue from last card
         var cardNr = 0;
+        if (localStorage.getItem("cardNr")) {
+            cardNr = localStorage.getItem("cardNr")-1;
+            $("#mwg-insert .card").addClass('done').remove();
+            nextImage = getNextImage();
+            showNextCard();
+        }
 
         // load likes form localstorage
         var likes = [];
