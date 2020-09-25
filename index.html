@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="css/fontawesome-all.min.css" rel="stylesheet">
+
+    <title>Benutzerprofil - Münster was geht</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/manifest.json">
+
+    <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png">
+
+
+<style>
+    #profile-icon.fa {
+        display: inline-block;
+        border-radius: 60px;
+        box-shadow: 0px 0px 2px #888;
+        padding: 0.5em 0.6em;
+        font-size:3em
+    }
+    #profile-name {
+        display:inline-block;
+        margin-top:5px;
+        margin-bottom:10px;
+    }
+    #interests button {margin:2px 0}
+    #interests button i {margin-right:4px}
+</style>
+</head>
+  <body>
+
+
+
+    <div class="container">
+        <div class="card">
+
+            <div class="card-body">
+                <div class="mx-auto" style="width:200px">
+                    <center>
+                        <i id="profile-icon" class="fa fa-user"></i>
+                        <span id="profile-name">Max Mustermann</span>
+                    </center>
+                </div>
+                <form>
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleFormControlSelect1" class="col-sm-2 col-form-label">Alter</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="exampleFormControlSelect1">
+                            <option> &lt; 15 </option>
+                            <option>15-19</option>
+                            <option>20-24</option>
+                            <option>25-29</option>
+                            <option>30-34</option>
+                            <option>35-39</option>
+                            <option>40-44</option>
+                            <option>45-49</option>
+                            <option>50-54</option>
+                            <option>55-59</option>
+                            <option>> 60</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleFormControlSelect1" class="col-sm-2 col-form-label">Geschlecht</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option> - </option>
+                                <option> m </option>
+                                <option> w</option>
+                                <option> d </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <fieldset class="form-group">
+                    <div class="row">
+                        <legend class="col-form-label col-sm-2 pt-0">Aus Münster?</legend>
+                        <div class="col-sm-10">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                                <label class="form-check-label" for="gridRadios1">
+                                Ja
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                                <label class="form-check-label" for="gridRadios2">
+                                Nein
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    </fieldset>
+
+                    <div class="form-group row">
+                        <label for="exampleFormControlSelect1" class="col-sm-2 col-form-label">Ich bin</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option> - </option>
+                                <option> Schüler </option>
+                                <option> Student </option>
+                                <option> Auszubildender </option>
+                                <option> Berufstätig </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="exampleFormControlSel" class="col-sm-2 col-form-label">Interessen</label>
+                        <div  class="col-sm-10">
+                            <center id="interests">
+                                <button class="btn btn-secondary"><i class="fa fa-pizza-slice"></i>Pizza</button>
+                                <button class="btn btn-success"><i class="fa fa-biking"></i>Radfahren</button>
+                                <button class="btn btn-success"><i class="fa fa-camera"></i>Fotografie</button>
+                                <button class="btn btn-success"><i class="fa fa-shopping-basket"></i>Picknicken</button>
+                                <button class="btn btn-secondary"><i class="fa fa-eye"></i>Sightseeing</button>
+                                <button class="btn btn-secondary"><i class="fa fa-gifts"></i>Shoppen</button>
+
+                            </center>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
