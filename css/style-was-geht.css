@@ -1,0 +1,47 @@
+/* generic styles */
+body {
+    background-image: url(images/background.jpg);
+    background-size: 100%;
+    padding-top:10px;
+    background-color:#f8f8f8;
+}
+input, button, select, .card.wasgeht {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px !important;
+}
+
+/* styles for main-tinder-page */
+.top-col-icon { font-size:1.8em }
+.color-blue {background-color:#3333ff}
+.white-circle {background-color:#fff; border-radius: 50%;width:1.7em;text-align:center}
+.button-dislike {
+    margin-top:10px;
+    display: inline-block;
+    border-radius: 40px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px !important;
+    padding: 0.5em 0.6em;
+    font-size:2em;
+    background-color:white
+}
+/* styles for frontpage */
+
+#frontpage-logo { width:300px; }
+#frontpage-buttons a {display:block;margin:15px 0}
+
+/* styles for profile page */
+#profile-icon.fa {
+    display: inline-block;
+    border-radius: 60px;
+    box-shadow: 0px 0px 2px #888;
+    padding: 0.5em 0.6em;
+    font-size:3em
+}
+#profile-name {
+    display:inline-block;
+    margin-top:5px;
+    margin-bottom:10px;
+}
+
+#mwg .btn i {margin-right:4px}
+
+#interests button {margin:2px 0}
+#interests button.active {background-color:orange;border-color:orange}
