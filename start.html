@@ -71,9 +71,9 @@
   </header>
 
   <div id="content">
-      <div id="mwg-insert">
+      <div id="mwg-insert" style="display: none;">
           <div class="mwg-card card wasgeht js-swiping-card">
-              <img class="card-img" src="images/party.jpg">
+              <img class="card-img" src="">
               <div class="card-img-overlay">
                   <!--<a class="badge badge-danger text-white"><i class="fa fa-fw fa-exclamation-triangle"></i> Hohe Besucherzahl</a>-->
                   <div class="white-circle float-right"><i class="fa fa-info"></i></div>
@@ -200,6 +200,8 @@
                     console.log("An error has occurred.");
                 });
             }
+
+            $("#mwg-insert").show();
         }
         var originalCard = $( ".mwg-card" ).clone();
 
