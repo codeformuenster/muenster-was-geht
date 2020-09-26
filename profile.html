@@ -42,43 +42,45 @@
             <div class="card-body">
                 <div class="mx-auto" style="width:200px">
                     <center>
-                        <i id="profile-icon" class="fa fa-user"></i>
-                        <span id="profile-name">Max Mustermann</span>
+                        <i id="profile-icon" class="fa fa-user"></i><br />
+                        <span id="profile-name"></span>
                     </center>
                 </div>
                 <form>
                     <div class="form-group row">
-                        <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
+                        <label for="name" class="col-sm-2 col-form-label">Name</label>
                         <div class="col-sm-10">
-                            <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                            <input type="text" class="form-control" id="name" placeholder="Name">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="exampleFormControlSelect1" class="col-sm-2 col-form-label">Alter</label>
+                        <label for="age" class="col-sm-2 col-form-label">Alter</label>
                         <div class="col-sm-10">
-                            <select class="form-control" id="exampleFormControlSelect1">
-                            <option> &lt; 15 </option>
-                            <option>15-19</option>
-                            <option>20-24</option>
-                            <option>25-29</option>
-                            <option>30-34</option>
-                            <option>35-39</option>
-                            <option>40-44</option>
-                            <option>45-49</option>
-                            <option>50-54</option>
-                            <option>55-59</option>
-                            <option>> 60</option>
+                            <select class="form-control" id="age">
+                                <option> &lt; 15 </option>
+                                <option>15-19</option>
+                                <option>20-24</option>
+                                <option>25-29</option>
+                                <option>30-34</option>
+                                <option>35-39</option>
+                                <option>40-44</option>
+                                <option>45-49</option>
+                                <option>50-54</option>
+                                <option>55-59</option>
+                                <option>60-64</option>
+                                <option>65-70</option>
+                                <option>&gt; 70</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="exampleFormControlSelect1" class="col-sm-2 col-form-label">Geschlecht</label>
+                        <label for="gender" class="col-sm-2 col-form-label">Geschlecht</label>
                         <div class="col-sm-10">
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option> - </option>
-                                <option> m </option>
-                                <option> w</option>
-                                <option> d </option>
+                            <select class="form-control" id="gender">
+                                <option> keine Angabe </option>
+                                <option> männlich  </option>
+                                <option> weiblich </option>
+                                <option> divers </option>
                             </select>
                         </div>
                     </div>
@@ -88,13 +90,13 @@
                         <legend class="col-form-label col-sm-2 pt-0">Aus Münster?</legend>
                         <div class="col-sm-10">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                                <input class="form-check-input" type="radio" name="ausMs" id="gridRadios1" value="ja" checked>
                                 <label class="form-check-label" for="gridRadios1">
                                 Ja
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                                <input class="form-check-input" type="radio" name="ausMs" id="gridRadios2" value="nein">
                                 <label class="form-check-label" for="gridRadios2">
                                 Nein
                                 </label>
@@ -108,10 +110,10 @@
                         <div class="col-sm-10">
                             <select class="form-control" id="exampleFormControlSelect1">
                                 <option> - </option>
-                                <option> Schüler </option>
-                                <option> Student </option>
-                                <option> Auszubildender </option>
-                                <option> Berufstätig </option>
+                                <option> Schüler/in </option>
+                                <option> Student/in </option>
+                                <option> Auszubildende/r </option>
+                                <option> Berufstätig/e </option>
                             </select>
                         </div>
                     </div>
@@ -120,14 +122,14 @@
                         <label for="exampleFormControlSel" class="col-sm-2 col-form-label">Interessen</label>
                         <div  class="col-sm-10">
                             <center id="interests">
-                                <button data-toggle="button" class="btn btn-secondary"><i class="fa fa-pizza-slice"></i>Pizza</button>
-                                <button data-toggle="button" class="btn btn-secondary"><i class="fa fa-biking"></i>Radfahren</button>
-                                <button data-toggle="button" class="btn btn-secondary"><i class="fa fa-camera"></i>Fotografie</button>
-                                <button data-toggle="button" class="btn btn-secondary"><i class="fa fa-shopping-basket"></i>Picknicken</button>
-                                <button data-toggle="button" class="btn btn-secondary"><i class="fa fa-eye"></i>Sightseeing</button>
-                                <button data-toggle="button" class="btn btn-secondary"><i class="fa fa-gifts"></i>Shoppen</button>
+                                <button id="p1" data-toggle="button" class="btn btn-secondary"><i class="fa fa-pizza-slice"></i>Pizza</button>
+                                <button id="p2" data-toggle="button" class="btn btn-secondary"><i class="fa fa-biking"></i>Radfahren</button>
+                                <button id="p3" data-toggle="button" class="btn btn-secondary"><i class="fa fa-camera"></i>Fotografie</button>
+                                <button id="p4" data-toggle="button" class="btn btn-secondary"><i class="fa fa-shopping-basket"></i>Picknicken</button>
+                                <button id="p5" data-toggle="button" class="btn btn-secondary"><i class="fa fa-eye"></i>Sightseeing</button>
+                                <button id="p6" data-toggle="button" class="btn btn-secondary"><i class="fa fa-gifts"></i>Shoppen</button>
 <br /><br />
-                                <a href="start.html" class="btn btn-primary"><i class="fa fa-forward"></i>speichern und weiter</a>
+                                <a href="start.html" class="btn btn-primary finish"><i class="fa fa-forward"></i>Speichern und weiter</a>
 
                             </center>
                         </div>
@@ -143,5 +145,90 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
+
+
+    <script>
+        // load highlighted buttons from localstorage
+        function highlightButtons() {
+            var oldFilter = localStorage.getItem("profileB");
+            var myButtons = [];
+            if (oldFilter) {
+                 myButtons = JSON.parse(oldFilter)
+            }
+            $( "button" ).each(function( index ) {
+                var buttonId = $(this).attr('id');
+                if (myButtons.indexOf(buttonId)> -1) {
+                    $(this).addClass('active');
+                }
+            });
+        }
+        highlightButtons();
+
+        // show saved content
+        function setFormFields() {
+            var oldFilter = localStorage.getItem("profileF");
+            var values = {};
+            if (oldFilter) {
+                 values = JSON.parse(oldFilter);
+            }
+            $( 'select,input[type="text"]' ).each(function( index ) {
+                var buttonId = $(this).attr('id');
+                $(this).val(values[buttonId])
+            });
+            var radioVal = values['ausMs'];
+            console.log("radioval", radioVal);
+            var $radios = $('input:radio[name=ausMs]');
+            $radios.filter('[value='+radioVal+']').prop('checked', true);
+        }
+
+        function showNameOnTop() {
+            var name = $('input#name').val();
+            $('#profile-name').text(name || "")
+        }
+        highlightButtons();
+        setFormFields();
+        showNameOnTop();
+
+        // show name on top
+        $('input#name').change(function() {
+            showNameOnTop();
+        })
+
+        // save form values to localstorage
+        function saveFormFields() {
+            var activeButtons = {};
+            $( 'select,input[type="text"]' ).each(function( index ) {
+                var buttonId = $(this).attr('id');
+                activeButtons[buttonId] = $(this).val();
+            });
+            activeButtons['ausMs'] = $('input[name=ausMs]:checked').val()
+            console.log("form values", activeButtons);
+            localStorage.setItem("profileF", JSON.stringify(activeButtons));
+        }
+
+        // save highlighted buttons to localstorage
+        function saveButtons() {
+            var activeButtons = [];
+            $( "button.active" ).each(function( index ) {
+                var buttonId = $(this).attr('id');
+                activeButtons.push(buttonId);
+            });
+            console.log("active buttons", activeButtons);
+            localStorage.setItem("profileB", JSON.stringify(activeButtons));
+        }
+
+        // register save events
+        $('button').click(function() {
+            var clickedButtonId = $(this).attr('id');
+            console.log('you clicked', clickedButtonId);
+            saveButtons();
+            saveFormFields();
+        });
+        $('.finish').click(function() {
+            saveButtons();
+            saveFormFields();
+        })
+    </script>
+
+</body>
 </html>
