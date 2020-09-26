@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="css/fontawesome-all.min.css" rel="stylesheet">
+    <link href="css/style-was-geht.css" rel="stylesheet">
+
+    <title>Benutzerprofil - Münster was geht</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/manifest.json">
+
+    <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png">
+
+
+</head>
+  <body>
+
+
+
+    <div class="container" id="mwg">
+        <div id="filter" class="card wasgeht">
+
+            <div class="card-body">
+                <div class="mx-auto" style="width:200px">
+                    <center>
+                        <span id="profile-name"><b>Filter</b></span>
+                    </center>
+                </div>
+                <form>
+
+                    <hr />
+                    <div class="form-group row">
+                        <label for="exampleFormControlSel" class="col-sm-2 col-form-label">Wo?</label>
+                        <div  class="col-sm-10">
+                            <center>
+                                <button id="u1" data-toggle="button" class="btn btn-secondary"><i class="fa fa-map-marker-alt"></i>Umfeld</button>
+                                <button id="u2" data-toggle="button" class="btn btn-secondary"><i class="fa fa-map-marked-alt"></i>Weitere Umgebung</button>
+                            </center>
+                        </div>
+                    </div>
+
+                    <hr />
+                    <div class="form-group row">
+                        <label for="exampleFormControlSel" class="col-sm-2 col-form-label">Wann?</label>
+                        <div  class="col-sm-10">
+                            <center>
+                                <button id="w1" data-toggle="button" class="btn btn-secondary"><i class="fa fa-clock"></i>Jetzt</button>
+                                <button id="w2" data-toggle="button" class="btn btn-secondary"><i class="fa fa-calendar-alt"></i>Später</button>
+                            </center>
+                        </div>
+                    </div>
+
+
+                    <hr />
+                    <div class="form-group row">
+                        <label for="exampleFormControlSel" class="col-sm-2 col-form-label">Wer?</label>
+                        <div  class="col-sm-10">
+                            <center>
+                                <button id="p1" data-toggle="button" class="btn btn-secondary"><i class="fa fa-map-marker-alt"></i>Allein</button>
+                                <button id="p2" data-toggle="button" class="btn btn-secondary"><i class="fa fa-map-marked-alt"></i>Familie</button>
+                                <button id="p3" data-toggle="button" class="btn btn-secondary"><i class="fa fa-map-marked-alt"></i>Freunde</button>
+                                <button id="p4" data-toggle="button" class="btn btn-secondary"><i class="fa fa-map-marked-alt"></i>Partner</button>
+                            </center>
+                        </div>
+                    </div>
+
+                    <hr />
+                    <div class="form-group row">
+                        <label for="exampleFormControlSel" class="col-sm-2 col-form-label">Lust auf:</label>
+                        <div  class="col-sm-10">
+                            <center>
+                                <button id="e1" data-toggle="button" class="btn btn-secondary"><i class="fa fa-map-marker-alt"></i>Sightseeing</button>
+                                <button id="e2" data-toggle="button" class="btn btn-secondary"><i class="fa fa-map-marked-alt"></i>Essen</button>
+                                <button id="e3" data-toggle="button" class="btn btn-secondary"><i class="fa fa-map-marked-alt"></i>Party</button>
+                                <button id="e4" data-toggle="button" class="btn btn-secondary"><i class="fa fa-map-marked-alt"></i>Shopping</button>
+                                <button id="e5" data-toggle="button" class="btn btn-secondary"><i class="fa fa-map-marked-alt"></i>Entertainment</button>
+                                <button id="e6" data-toggle="button" class="btn btn-secondary"><i class="fa fa-map-marked-alt"></i>Entspannung</button>
+                            </center>
+                        </div>
+                    </div>
+
+                    <br /><br />
+                    <center>
+                        <a href="start.html" class="finish btn btn-primary"><i class="fa fa-forward"></i>speichern und weiter</a>
+                    </center>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script>
+        // load highlighted buttons from localstorage
+        function highlightButtons() {
+            var oldFilter = localStorage.getItem("filter");
+            var myButtons = ['p1', 'w1', 'u1', 'e1'];
+            if (oldFilter) {
+                 myButtons = JSON.parse(oldFilter)
+            }
+            $( "button" ).each(function( index ) {
+                var buttonId = $(this).attr('id');
+                if (myButtons.indexOf(buttonId)> -1) {
+                    $(this).addClass('active');
+                }
+            });
+
+        }
+        highlightButtons();
+
+        // save highlighted buttons to localstorage
+        function saveButtons() {
+            var activeButtons = [];
+            $( "button.active" ).each(function( index ) {
+                var buttonId = $(this).attr('id');
+                activeButtons.push(buttonId);
+            });
+            console.log("active buttons", activeButtons);
+            localStorage.setItem("filter", JSON.stringify(activeButtons));
+        }
+
+        // register save events
+        $('button').click(function() {
+            var clickedButtonId = $(this).attr('id');
+            console.log('you clicked', clickedButtonId);
+            saveButtons();
+        });
+        $('.finish').click(function() {
+            saveButtons();
+        })
+    </script>
+
+</body>
+</html>

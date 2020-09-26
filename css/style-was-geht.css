@@ -43,5 +43,6 @@ input, button, select, .card.wasgeht {
 
 #mwg .btn i {margin-right:4px}
 
-#interests button {margin:2px 0}
+#interests button, #filter button {margin:2px 0}
+#filter button.active,
 #interests button.active {background-color:orange;border-color:orange}
