@@ -14,8 +14,6 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js"></script>
 
-
-
 <style>
 
 .card:hover .card-illustration, .card:focus .card-illustration {
@@ -35,7 +33,7 @@
 */
 
 </style>
-    <title>Benutzerprofil - Münster was geht</title>
+    <title>Swipe - Münster was geht</title>
 
     <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
@@ -57,62 +55,58 @@
 
 </head>
   <body>
+  <header>
+      <div class="row">
+          <div class="col text-left">
+              <a class="top-col-icon" href="profile.html"><i class="fa fa-fw fa-user"></i></a>
+          </div>
+          <div class="col text-center">
+              <a href="filter.html" class="btn btn-primary"><i class="fa fa-fw fa-filter"></i>Filter</a>
 
+          </div>
+          <div class="col text-right">
+              <a href="favorites.html" class="top-col-icon"><i class="fa fa-fw fa-list-alt"></i></a>
+          </div>
+      </div>
+  </header>
 
+  <div id="content">
+      <div id="mwg-insert">
+          <div class="mwg-card card wasgeht js-swiping-card">
 
-    <div class="container main-page" id="mwg">
-        <div class="row">
-            <div class="col">
-                <a class="top-col-icon" href="profile.html"><i class="fa fa-user"></i></a>
-            </div>
-            <div class="col">
-                <a  href="filter.html" class="btn btn-primary"><i class="fa fa-filter"></i>filter</a>
+              <img class="card-img" src="images/party.jpg"/>
+              <div class="card-img-overlay">
+                  <!--<a class="badge badge-danger text-white"><i class="fa fa-fw fa-exclamation-triangle"></i> Hohe Besucherzahl</a>-->
+                  <div class="white-circle float-right"><i class="fa fa-info"></i></div>
+              </div>
 
-            </div>
-            <div class="col">
-                <a href="favorites.html" class=" float-right top-col-icon"><i class="fa fa-list-alt"></i></a>
-            </div>
-        </div>
-        <div id="mwg-insert">
-            <div class="mwg-card card wasgeht js-swiping-card">
-
-                <img class="card-img" src="images/party.jpg"/>
-                <div class="card-img-overlay">
-                    <a class="badge badge-danger text-white"><i class="fa fa-exclamation-triangle"></i> Hohe Besucherzahl</a>
-                    <div class="white-circle float-right"><i class="fa fa-info"></i></div>
-                </div>
-
-                <div class="card-body">
+              <div class="card-body">
                     <span class="badge badge-info text-white float-right">
-                        <i class="fa fa-map-marker-alt"></i>2 km
+                        <i class="fa fa-fw fa-map-marker-alt"></i><span id="distance"></span> km
                     </span>
-                    <h5 class="card-title">Event: Send</h5>
+                  <h5 class="card-title"></h5>
 
 
-                    <span class="badge color-blue text-white">Entertainment</span>
-                    <span class="badge badge-success text-white">Findet statt bis 23:00</span>
+                  <span id="departments"></span>
+                  <div class="mwg-content"></div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <footer>
+      <div class="row">
+          <div class="col text-left">
+              <i class="js-left-trigger button-dislike fa fa-thumbs-down text-danger "></i>
+          </div>
+          <div class="col text-center">
+              <i class="js-center-trigger button-dislike fa fa-times"></i>
+          </div>
+          <div class="col text-right">
+              <i class="js-right-trigger float-right button-dislike fa fa-heart text-success"></i>
+          </div>
+      </div>
+  </footer>
 
-                    <div class="mwg-content">           Dreimal im Jahr ist Send - die größte Kirmes im Münsterland, die Jahr für Jahr etwa eine Million Besucher anzieht. Schaustellerbetriebe aus der ganzen Bundesrepublik kommen im Frühling, im Sommer und im Herbst nach Münster, um Nostalgisches und natürlich die neuesten Sensationen an Fahrgeschäften zu präsentieren.
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <i class="js-left-trigger button-dislike fa fa-thumbs-down text-danger "></i>
-            </div>
-            <div class="col text-justify">
-                <center>
-                <i class="js-center-trigger button-dislike fa fa-times"></i>
-            </center>
-            </div>
-            <div class="col">
-                <i class="js-right-trigger float-right button-dislike fa fa-heart text-success"></i>
-            </div>
-        </div>
-
-
-    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS
@@ -122,24 +116,80 @@
     -->
 
     <script>
+
         function getRandomInt(max) {
             return Math.floor(Math.random() * Math.floor(max));
         }
-        function getNextImage() {
-            var random = 200 + cardNr
-            var path = "https://placekitten.com/300/" + random;
+        function getRandomImage() {
+            var path = "https://placekitten.com/300/";
             $('<img/>')[0].src = path
             return path;
         }
         function showNextCard() {
-            originalCard.clone().appendTo( "#mwg-insert" );
-            $("#mwg-insert .card").hide();
-            $("#mwg-insert .card-title").html("Event Kätzchen #" + (++cardNr));
-            localStorage.setItem("cardNr", cardNr);
-            $("#mwg-insert .card-img").attr("src", nextImage)
-            $("#mwg-insert .card").fadeIn();
-            registerSwipeEvent();
-            nextImage = getNextImage();
+            // Notice: This is an ABSOLUTE DIRTY prototype. Only for demo. :)
+            if(Math.random() < 0.5) {
+                // POI
+                $.getJSON("datenportal_example_response_pois.json", function (response) {
+                    pois = response.data;
+                    poiData = pois[getRandomInt(pois.length)];
+
+                    departments = "";
+                    poiData.departments.forEach(
+                        element => departments += " <span class=\"badge color-blue text-white\">" + element.name + "</span>"
+                    );
+
+                    imageUrl = "";
+                    images = poiData.public_media.images;
+                    if(images.length > 0){
+                        imageUrl = images[0].urls.mid;
+                    } else {
+                        imageUrl = getRandomImage();
+                    }
+
+                    console.log(imageUrl);
+
+                    originalCard.clone().appendTo("#mwg-insert");
+                    $("#mwg-insert .card").hide();
+                    $("#mwg-insert .card-title").html("POI: <br>" + poiData.name);
+                    $("#mwg-insert #distance").html(Math.round(poiData.geofence_distance_in_km, 2));
+                    $(".mwg-content").html(poiData.description_text);
+                    $("#departments").html(departments);
+                    localStorage.setItem("event", cardNr);
+                    $("#mwg-insert .card-img").attr("src", imageUrl);
+                    $("#mwg-insert .card").fadeIn();
+                    registerSwipeEvent();
+
+
+                }).fail(function () {
+                    console.log("An error has occurred.");
+                });
+            } else {
+                // Event
+                $.getJSON("datenportal_example_response_events.json", function(response){
+                    events = response.data;
+                    eventData = events[getRandomInt(events.length)];
+
+                    departments = "";
+                    eventData.departments.forEach(
+                        element => departments += " <span class=\"badge color-blue text-white\">" + element.name + "</span>"
+                    );
+
+                    originalCard.clone().appendTo( "#mwg-insert" );
+                    $("#mwg-insert .card").hide();
+                    $("#mwg-insert .card-title").html("Event: <br>" + eventData.name);
+                    $("#mwg-insert #distance").html(Math.round(eventData.geofence_distance_in_km, 2));
+                    $(".mwg-content").html(eventData.description_text);
+                    $("#departments").html(departments);
+                    localStorage.setItem("event", cardNr);
+                    $("#mwg-insert .card-img").attr("src", nextImage)
+                    $("#mwg-insert .card").fadeIn();
+                    registerSwipeEvent();
+
+
+                }).fail(function(){
+                    console.log("An error has occurred.");
+                });
+            }
         }
 
 
@@ -150,7 +200,7 @@
         if (localStorage.getItem("cardNr")) {
             cardNr = localStorage.getItem("cardNr")-1;
             $("#mwg-insert .card").addClass('done').remove();
-            nextImage = getNextImage();
+            nextImage = getRandomImage();
             showNextCard();
         }
 
@@ -161,7 +211,7 @@
         }
 
         // cats load very slow, so we do image preloading
-        var nextImage = getNextImage();
+        var nextImage = getRandomImage();
 
         var $topCard,
             //deltaThreshold is the swipe distance from the initial place of the card
@@ -271,10 +321,6 @@
             });
         })
 
-
     </script>
-
-
-
 </body>
 </html>
