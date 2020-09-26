@@ -11,7 +11,7 @@
     <link href="css/fontawesome-all.min.css" rel="stylesheet">
     <link href="css/style-was-geht.css" rel="stylesheet">
 
-    <title>Benutzerprofil - Münster was geht</title>
+    <title>Deine Likes - Münster was geht</title>
 
     <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
@@ -30,24 +30,30 @@
 
     <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png">
 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 
+    <style type="text/css">
+        #likesTable .btn {margin-right:3px}
+        #likesTable .btn {width:30px;overflow:hidden}
+    </style>
 </head>
   <body>
 
-    <script>
-        alert("Deine likes: " + localStorage.getItem("likes"));
-    </script>
 
     <div class="container" id="mwg">
         <div class="card wasgeht">
 
             <div class="card-body">
-                <div class="mx-auto" style="width:300px">
-                    <center>
-                        <img id="frontpage-logo" src="images/logo-was-geht.jpg" />
-                        <br /><br /><i>Verlieb Dich neu in Deine Stadt!</i><br />Finde Orte und Events, die wirklich zu Dir passen.<br />
-                    </center>
-                </div>
+                <table class="table">
+                    <thead>
+                      <tr >
+                        <th colspan="3" scope="col">Deine Likes:</th>
+                      </tr>
+                    </thead>
+                    <tbody id="likesTable">
+                    </tbody>
+                </table>
+
                 <form>
 
                     <center id="frontpage-buttons">
@@ -59,10 +65,29 @@
         </div>
     </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script>
+
+    var likes = JSON.parse(localStorage.getItem("likes"));
+    console.log("likes", likes);
+    var $table = $("#likesTable");
+    var itemNr = 0;
+    likes.forEach(function(item){
+        $table.append('<tr><th scope="row">'+(++itemNr)+'</th><td class="eventName">' + item +'</td>'
+                        + '<td><a class="btn btn-sm btn-danger text-white float-left"><i class="fa fa-times"></i></<a>'
+                        + '<a class="btn btn-sm btn-success text-white"><i class="fa fa-check"></i></a></td></tr>');
+
+    });
+    $('#likesTable tr').click(function() {
+        var likedName = $(this).find(".eventName").text()
+        console.log('likedName', likedName);
+        $(this).fadeOut();
+
+        likes = likes.filter(e => e !== likedName);
+        console.log("likes", likes);
+        localStorage.setItem("likes", JSON.stringify(likes));
+    })
+
+
+</script>
   </body>
 </html>
