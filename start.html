@@ -116,16 +116,29 @@
     -->
 
     <script>
+        $( document ).ready(function() {
+            showNextCard(true);
+        });
 
         function getRandomInt(max) {
             return Math.floor(Math.random() * Math.floor(max));
         }
+        function getRandomIntMinMax(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
+
         function getRandomImage() {
-            var path = "https://placekitten.com/300/";
+            var path = "https://placekitten.com/300/" + getRandomIntMinMax(300, 400);
             $('<img/>')[0].src = path
             return path;
         }
-        function showNextCard() {
+        function showNextCard(init = false) {
+            if(!init){
+                originalCard.clone().appendTo("#mwg-insert");
+            }
+
             // Notice: This is an ABSOLUTE DIRTY prototype. Only for demo. :)
             if(Math.random() < 0.5) {
                 // POI
@@ -148,13 +161,12 @@
 
                     console.log(imageUrl);
 
-                    originalCard.clone().appendTo("#mwg-insert");
                     $("#mwg-insert .card").hide();
                     $("#mwg-insert .card-title").html("POI: <br>" + poiData.name);
                     $("#mwg-insert #distance").html(Math.round(poiData.geofence_distance_in_km, 2));
                     $(".mwg-content").html(poiData.description_text);
                     $("#departments").html(departments);
-                    localStorage.setItem("event", cardNr);
+                    //localStorage.setItem("event", cardNr);
                     $("#mwg-insert .card-img").attr("src", imageUrl);
                     $("#mwg-insert .card").fadeIn();
                     registerSwipeEvent();
@@ -174,13 +186,12 @@
                         element => departments += " <span class=\"badge color-blue text-white\">" + element.name + "</span>"
                     );
 
-                    originalCard.clone().appendTo( "#mwg-insert" );
                     $("#mwg-insert .card").hide();
                     $("#mwg-insert .card-title").html("Event: <br>" + eventData.name);
                     $("#mwg-insert #distance").html(Math.round(eventData.geofence_distance_in_km, 2));
                     $(".mwg-content").html(eventData.description_text);
                     $("#departments").html(departments);
-                    localStorage.setItem("event", cardNr);
+                    //localStorage.setItem("event", cardNr);
                     $("#mwg-insert .card-img").attr("src", nextImage)
                     $("#mwg-insert .card").fadeIn();
                     registerSwipeEvent();
@@ -191,18 +202,7 @@
                 });
             }
         }
-
-
         var originalCard = $( ".mwg-card" ).clone();
-
-        // continue from last card
-        var cardNr = 0;
-        if (localStorage.getItem("cardNr")) {
-            cardNr = localStorage.getItem("cardNr")-1;
-            $("#mwg-insert .card").addClass('done').remove();
-            nextImage = getRandomImage();
-            showNextCard();
-        }
 
         // load likes form localstorage
         var likes = [];
