@@ -73,8 +73,7 @@
   <div id="content">
       <div id="mwg-insert">
           <div class="mwg-card card wasgeht js-swiping-card">
-
-              <img class="card-img" src="images/party.jpg"/>
+              <img class="card-img" src="images/party.jpg">
               <div class="card-img-overlay">
                   <!--<a class="badge badge-danger text-white"><i class="fa fa-fw fa-exclamation-triangle"></i> Hohe Besucherzahl</a>-->
                   <div class="white-circle float-right"><i class="fa fa-info"></i></div>
@@ -130,7 +129,7 @@
         }
 
         function getRandomImage() {
-            var path = "https://placekitten.com/300/" + getRandomIntMinMax(300, 400);
+            var path = "https://placekitten.com/300/" + getRandomIntMinMax(100, 200);
             $('<img/>')[0].src = path
             return path;
         }
